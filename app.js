@@ -1,4 +1,5 @@
 const referencePhotos = {
+  "Tillandsia Xerographica (Glass Globe)": ["globe-xerographica.webp", "https://www.air-plants.com/products/xerographica-seedling", "Tillandsia xerographica reference"],
   "Nepenthes": ["nepenthes.webp", "https://www.carnivero.com/products/nepenthes-ventricosa-mt-black-peristome-x-k-car-0213", "Nepenthes ventricosa example · your variety may differ"],
   "Venus Flytrap": ["venus-flytrap.webp", "https://www.obi.at/p/5416193/venusfliegenfalle-topf-ca-9-cm-dionaea-muscipula", "Venus flytrap · Dionaea muscipula"],
   "Sundew": ["sundew.webp", "https://www.carnivero.com/", "Cape sundew example · your species may differ"],
@@ -119,4 +120,5 @@ function render() {
 search.addEventListener('input', render);
 group.addEventListener('change', render);
 render();
+
 
