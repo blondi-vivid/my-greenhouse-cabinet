@@ -22,28 +22,17 @@
 .setup-status,.setup-help{font-size:.85rem;color:var(--soft);margin:8px 0}.setup-fields input[type=file]{font-size:.85rem}
 @media(max-width:620px){.setup-layout{grid-template-columns:1fr}.setup-section{padding:18px}}
 </style>
-</head>
+<style>.page-nav{display:flex;gap:12px;flex-wrap:wrap;padding:18px max(18px,calc((100% - 1120px)/2));background:#e8efdf;border-bottom:1px solid var(--line)}.page-nav a{padding:8px 15px;border:1px solid #aebfa5;border-radius:999px;text-decoration:none;font-weight:650}.page-nav a[aria-current=page]{background:var(--green);color:#fffceb}.hero{grid-template-columns:1fr}.plant-sources{font-size:.85rem;color:var(--soft);margin:24px 0}</style><style>.branded-header{background:var(--paper);color:var(--ink)}.branded-header .hero{display:flex;flex-direction:column;gap:10px;padding:25px 0 20px;text-align:center}.branded-header .hero .brand-logo{height:310px;width:auto;max-width:100%;object-fit:contain;border:0;border-radius:0}.branded-header .hero p{margin:0;color:var(--soft);max-width:60ch}.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}@media(max-width:620px){.branded-header .hero .brand-logo{height:245px}}</style></head>
 <body>
-<header><div class="hero"><div><p class="tag">Plant collection · RUDSTA cabinet</p><h1>My Greenhouse Cabinet</h1><p>Find each plant’s light, watering, growing setup, and best spot in or around the cabinet.</p></div><img src="9311.webp" alt="Variegated bromeliad on a wooden cabinet mount"></div></header>
+<header class="branded-header"><div class="hero"><h1 class="visually-hidden">My Greenhouse Cabinet</h1><img class="brand-logo" src="greenhouse-logo.png" alt="My Greenhouse Cabinet — glass cabinet with plants and a trailing vine"><p>My plants, their care, and the cabinet they call home.</p></div></header><nav class="page-nav" aria-label="Main navigation"><a href="index.html" aria-current="page">Current Plants</a><a href="setup.html">Current Setup</a></nav>
 <main>
-<section class="setup-section" aria-labelledby="setup-title">
-<h2 id="setup-title">Current Setup</h2>
-<p class="setup-help">Keep a photo and notes about your cabinet, plus its current temperature and humidity. Save here, then connect Cloud Sync to share your setup across devices.</p>
-<div class="setup-layout">
-<div><img id="setup-photo" class="setup-photo" alt="Your current greenhouse cabinet setup" hidden><div id="setup-placeholder" class="setup-placeholder">Add a photo of your current setup</div><p id="setup-saved" class="setup-help"></p></div>
-<form id="setup-form" class="setup-fields">
-<label>Setup photo<input id="setup-file" type="file" accept="image/jpeg,image/png,image/webp,image/avif"></label>
-<label>Setup notes<textarea id="setup-notes" rows="4" maxlength="10000" placeholder="Shelves, plants, lights, fans, and recent changes"></textarea></label>
-<div class="setup-readings"><label>Temperature (°F)<input id="setup-temp" type="number" step="0.1" min="-50" max="150" placeholder="75"></label><label>Humidity (%)<input id="setup-humidity" type="number" step="0.1" min="0" max="100" placeholder="68"></label></div>
-<button type="submit" id="setup-save">Save Current Setup</button>
-<p id="setup-status" class="setup-status" role="status" aria-live="polite"></p>
-</form></div></section>
+
 
 <section aria-label="Cabinet conditions"><div class="conditions"><div><span class="tag">Recent humidity</span><strong>About 68% RH</strong></div><div><span class="tag">Reported temperature</span><strong>75–78 °F</strong></div><div><span class="tag">Airflow</span><strong>Fan runs across the shelf</strong></div></div><p class="note">All cabinet grow lights are set to the same level. Check light and drying at leaf level, especially behind glass and around dense moss. Watering cues are starting points to adjust as the cabinet dries.</p></section>
-<section aria-labelledby="inventory"><h2 id="inventory">Plant inventory</h2>
+<section aria-labelledby="inventory"><h2 id="inventory">Current Plants</h2>
 <div class="controls"><label>Search plants<input type="search" id="search" placeholder="Try pothos or Tillandsia"></label><label>Plant group<select id="group"><option value="">All groups</option></select></label></div>
 <p id="count" class="result" role="status"></p><div class="grid" id="cards"></div><noscript>Enable JavaScript to view the plant inventory.</noscript></section>
-</main>
+<p class="plant-sources">Carnivorous plant care references · <a href="https://www.californiacarnivores.com/pages/venus-flytrap-care">Venus flytrap care</a> · <a href="https://www.californiacarnivores.com/products/nepenthes-ventricosa">Nepenthes care</a> · <a href="https://www.growcarnivorousplants.com/tropical-sundew-care/">Tropical sundew care</a></p></main>
 <footer>Care references · <a href="https://libguides.nybg.org/airplant">New York Botanical Garden air plant guide</a> · <a href="https://plants.ces.ncsu.edu/plants/tillandsia-xerographica/">NC State Extension xerographica guide</a> · <a href="https://hgic.clemson.edu/factsheet/bromeliads/">Clemson Extension bromeliad guide</a></footer>
 
 <style>
@@ -55,277 +44,17 @@
 #cloud-panel button[data-sync]{margin:8px 4px 0 0}#cloud-panel .auto-sync{display:flex;gap:8px;align-items:center;font-size:.85rem;margin-top:14px}#cloud-panel .auto-sync input{width:auto}#cloud-panel{max-height:calc(100dvh - 100px);overflow:auto}#cloud-panel .close-cloud{float:right;background:transparent;color:var(--ink);padding:4px 8px;border:0;font-size:20px}footer{padding-bottom:95px}
 </style>
 <button type="button" id="back-top" class="floating-action" aria-label="Back to top">↑ Back to Top</button>
-<button type="button" id="cloud-toggle" class="floating-action" aria-controls="cloud-panel" aria-expanded="false">☁ Cloud Sync</button>
-<section id="cloud-panel" aria-label="Cloud sync" hidden>
-<button type="button" class="close-cloud" aria-label="Close cloud sync">×</button>
-<h2>Cloud Sync</h2>
-<p>Sync your setup photo, notes, temperature, and humidity across your devices.</p>
-<label for="sync-password">Sync password</label>
-<input id="sync-password" type="password" autocomplete="off" placeholder="Your Cloudflare sync password">
-<button type="button" id="sync-connect" data-sync>Connect</button>
-<p id="cloud-status" role="status" aria-live="polite">Enter your sync password to connect. It is kept in memory until you close or reload this page.</p>
-<button type="button" id="sync-load" data-sync>Load Cloud Copy</button>
-<button type="button" id="sync-save" data-sync>Save Browser Copy to Cloud</button>
-<label class="auto-sync"><input id="sync-auto" type="checkbox" checked> Check every 2 minutes while open</label>
-</section>
+<a href="setup.html#cloud-panel" class="floating-action" id="cloud-toggle" style="text-decoration:none">☁ Cloud Sync</a>
+
 
 
 
 
 <script>
-(() => {
-  const form = document.getElementById('setup-form');
-  const photo = document.getElementById('setup-photo');
-  const placeholder = document.getElementById('setup-placeholder');
-  const fileInput = document.getElementById('setup-file');
-  const notes = document.getElementById('setup-notes');
-  const temp = document.getElementById('setup-temp');
-  const humidity = document.getElementById('setup-humidity');
-  const status = document.getElementById('setup-status');
-  const cloudStatus = document.getElementById('cloud-status');
-  const saved = document.getElementById('setup-saved');
-  const save = document.getElementById('setup-save');
-  const panel = document.getElementById('cloud-panel');
-  const toggle = document.getElementById('cloud-toggle');
-  const password = document.getElementById('sync-password');
-  const automatic = document.getElementById('sync-auto');
-  let current = {};
-  let database;
-  let objectUrl;
-  let busy = false;
-  let dirty = false;
-  let connected = false;
-  let key = '';
-  let baseVersion = null;
-  let loading = true;
-  const channel = typeof BroadcastChannel === 'function' ? new BroadcastChannel('greenhouse-setup') : null;
-  channel?.addEventListener('message', () => {
-    baseVersion = null;
-    cloudStatus.textContent = 'Another tab saved a setup. Load the cloud copy before saving from this tab.';
-  });
-  function message(text) { cloudStatus.textContent = text; }
-  function showPhoto(blob) {
-    if (objectUrl) URL.revokeObjectURL(objectUrl);
-    objectUrl = blob ? URL.createObjectURL(blob) : null;
-    photo.hidden = !objectUrl;
-    placeholder.hidden = !!objectUrl;
-    if (objectUrl) photo.src = objectUrl;
-    else photo.removeAttribute('src');
-  }
-  function display(record) {
-    notes.value = record.notes || '';
-    temp.value = record.temperature ?? '';
-    humidity.value = record.humidity ?? '';
-    showPhoto(record.photo);
-    saved.textContent = record.savedAt ? 'Saved ' + new Date(record.savedAt).toLocaleString() : '';
-  }
-  function persist(record) {
-    return new Promise((resolve, reject) => {
-      const transaction = database.transaction('setup', 'readwrite');
-      transaction.objectStore('setup').put(record, 'current');
-      transaction.oncomplete = resolve;
-      transaction.onerror = () => reject(transaction.error);
-      transaction.onabort = () => reject(transaction.error);
-    });
-  }
-  const ready = new Promise((resolve, reject) => {
-    const request = indexedDB.open('greenhouse-cabinet', 1);
-    request.onupgradeneeded = () => request.result.createObjectStore('setup');
-    request.onerror = () => reject(request.error);
-    request.onsuccess = () => {
-      database = request.result;
-      const read = database.transaction('setup').objectStore('setup').get('current');
-      read.onerror = () => reject(read.error);
-      read.onsuccess = () => resolve(read.result || {});
-    };
-  });
-  ready.then(record => {
-    current = record;
-    display(record);
-    loading = false;
-  }).catch(() => {
-    loading = false;
-    save.disabled = true;
-    status.textContent = 'Browser storage is unavailable. Use a browser with storage enabled.';
-  });
-  form.addEventListener('input', () => { dirty = true; });
-  fileInput.addEventListener('change', () => {
-    const file = fileInput.files[0];
-    if (file && file.size > 15 * 1024 * 1024) {
-      fileInput.value = '';
-      status.textContent = 'Choose a photo smaller than 15 MB.';
-      showPhoto(current.photo);
-      return;
-    }
-    showPhoto(file || current.photo);
-    dirty = true;
-    status.textContent = 'Save Current Setup to keep your changes.';
-  });
-  async function api(method, body) {
-    const response = await fetch('/api/setup', {
-      method, cache: 'no-store', signal: AbortSignal.timeout(20000),
-      headers: { 'Authorization': 'Bearer ' + key, ...(body ? { 'Content-Type': 'application/json' } : {}) },
-      body: body ? JSON.stringify(body) : undefined
-    });
-    const result = await response.json();
-    if (!response.ok) {
-      if (response.status === 409) baseVersion = null;
-      throw new Error(result.error || 'Cloud request failed.');
-    }
-    return result;
-  }
-  async function cloudPhoto(blob) {
-    if (!blob) return null;
-    const image = await createImageBitmap(blob);
-    try {
-      const scale = Math.min(1, 1400 / Math.max(image.width, image.height));
-      const canvas = document.createElement('canvas');
-      canvas.width = Math.max(1, Math.round(image.width * scale));
-      canvas.height = Math.max(1, Math.round(image.height * scale));
-      const context = canvas.getContext('2d');
-      context.fillStyle = '#ffffff';
-      context.fillRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(image, 0, 0, canvas.width, canvas.height);
-      const data = canvas.toDataURL('image/jpeg', 0.72);
-      if (data.length > 1000000) throw new Error('The photo is too large for cloud sync. Choose a smaller photo.');
-      return data;
-    } finally { image.close(); }
-  }
-  async function push() {
-    if (baseVersion === null) throw new Error('Load the cloud copy first. Another device may have saved changes.');
-    const payload = {
-      notes: current.notes || '',
-      temperature: current.temperature ?? null,
-      humidity: current.humidity ?? null,
-      photo: await cloudPhoto(current.photo)
-    };
-    const result = await api('PUT', { baseVersion, setup: payload });
-    baseVersion = result.version;
-    current = { ...current, cloudVersion: result.version, cloudDirty: false };
-    await persist(current);
-    channel?.postMessage('saved');
-    message('Cloud saved · ' + new Date(result.updatedAt).toLocaleString());
-  }
-  async function loadCloud() {
-    const result = await api('GET');
-    if (!result.setup) {
-      baseVersion = 0;
-      message('Cloud is empty. Save your current setup, then choose Save Browser Copy to Cloud.');
-      return;
-    }
-    let blob = null;
-    if (result.setup.photo) blob = await (await fetch(result.setup.photo)).blob();
-    const record = {
-      notes: result.setup.notes, temperature: result.setup.temperature,
-      humidity: result.setup.humidity, photo: blob,
-      savedAt: result.updatedAt, cloudVersion: result.version, cloudDirty: false
-    };
-    await persist(record);
-    current = record;
-    baseVersion = result.version;
-    display(record);
-    fileInput.value = '';
-    dirty = false;
-    message('Cloud copy loaded · ' + new Date(result.updatedAt).toLocaleString());
-    status.textContent = 'Setup loaded from cloud and saved on this browser.';
-  }
-  async function run(action) {
-    if (busy || loading || !database) return;
-    busy = true;
-    save.disabled = true;
-    form.querySelectorAll('input, textarea').forEach(field => { field.disabled = true; });
-    panel.querySelectorAll('button[data-sync]').forEach(button => { button.disabled = true; });
-    try { await action(); }
-    catch (error) { message(error.message); }
-    finally {
-      busy = false;
-      save.disabled = false;
-      form.querySelectorAll('input, textarea').forEach(field => { field.disabled = false; });
-      panel.querySelectorAll('button[data-sync]').forEach(button => { button.disabled = false; });
-    }
-  }
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    run(async () => {
-      if (!form.reportValidity()) return;
-      const record = {
-        ...current, notes: notes.value,
-        temperature: temp.value === '' ? null : Number(temp.value),
-        humidity: humidity.value === '' ? null : Number(humidity.value),
-        photo: fileInput.files[0] || current.photo || null,
-        savedAt: new Date().toISOString(), cloudDirty: true
-      };
-      await persist(record);
-      current = record;
-      fileInput.value = '';
-      dirty = false;
-      display(record);
-      status.textContent = 'Setup saved on this browser.';
-      if (connected && baseVersion !== null) {
-        try {
-          await push();
-          status.textContent = 'Setup saved on this browser and in the cloud.';
-        } catch (error) {
-          status.textContent = 'Browser copy saved. Cloud save needs attention.';
-          message(error.message);
-        }
-      }
-    });
-  });
-  document.getElementById('sync-connect').addEventListener('click', () => run(async () => {
-    key = password.value;
-    if (!key) throw new Error('Enter the sync password you set in Cloudflare.');
-    const result = await api('GET');
-    connected = true;
-    password.value = '';
-    baseVersion = result.setup ? current.cloudVersion ?? null : 0;
-    if (!result.setup) {
-      message('Connected. Cloud is empty. Save Browser Copy to Cloud to upload your setup.');
-    } else if (current.cloudVersion === result.version && !current.cloudDirty) {
-      baseVersion = result.version;
-      message('Connected. Browser and cloud versions match.');
-    } else {
-      message('Connected. A cloud copy exists. Load Cloud Copy to use it. Your browser copy is kept until you choose.');
-    }
-  }));
-  document.getElementById('sync-load').addEventListener('click', () => {
-    if (!connected) { message('Connect with your sync password first.'); return; }
-    if ((dirty || current.cloudDirty || current.savedAt && !current.cloudVersion) && !confirm('Replace the setup on this browser with the cloud copy? Unsynced changes on this browser will be replaced.')) return;
-    run(loadCloud);
-  });
-  document.getElementById('sync-save').addEventListener('click', () => {
-    if (!connected) { message('Connect with your sync password first.'); return; }
-    if (dirty) { message('Save Current Setup before uploading the browser copy.'); return; }
-    run(push);
-  });
-  setInterval(() => {
-    if (!connected || !automatic.checked || busy || dirty || document.hidden || baseVersion === null) return;
-    run(async () => {
-      const result = await api('GET');
-      if (result.version !== baseVersion) {
-        if (current.cloudDirty) {
-          baseVersion = null;
-          message('Cloud changed on another device. Choose Load Cloud Copy to resolve the difference.');
-        } else await loadCloud();
-      } else if (current.cloudDirty) await push();
-    });
-  }, 120000);
-  toggle.addEventListener('click', () => {
-    panel.hidden = !panel.hidden;
-    toggle.setAttribute('aria-expanded', String(!panel.hidden));
-  });
-  function closePanel() {
-    panel.hidden = true;
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.focus();
-  }
-  panel.querySelector('.close-cloud').addEventListener('click', closePanel);
-  document.addEventListener('keydown', event => { if (event.key === 'Escape' && !panel.hidden) closePanel(); });
-  document.getElementById('back-top').addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-  });
-})();
-
+document.getElementById('back-top').addEventListener('click', () => {
+  window.scrollTo({top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+});
 </script>
 </body></html>
+
 

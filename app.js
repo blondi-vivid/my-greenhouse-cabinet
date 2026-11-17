@@ -1,4 +1,7 @@
 const referencePhotos = {
+  "Nepenthes": ["nepenthes.webp", "https://www.carnivero.com/products/nepenthes-ventricosa-mt-black-peristome-x-k-car-0213", "Nepenthes ventricosa example · your variety may differ"],
+  "Venus Flytrap": ["venus-flytrap.webp", "https://www.obi.at/p/5416193/venusfliegenfalle-topf-ca-9-cm-dionaea-muscipula", "Venus flytrap · Dionaea muscipula"],
+  "Sundew": ["sundew.webp", "https://www.carnivero.com/", "Cape sundew example · your species may differ"],
   "Parlor Palm": ["reference-palm.webp", "https://hortology.co.uk/products/chamaedorea-elegans-parlour-palm-house-plant", "Parlor palm · Chamaedorea elegans"],
   "Baby Tears": [
     "reference-7.webp",
@@ -76,7 +79,7 @@ function plantCard([name, category, identity, photo, ...care]) {
   const body = element('div', '', 'card');
   body.append(element('p', category, 'tag'), element('h3', name), element('p', identity, 'id'));
   const details = element('dl');
-  ['Light', 'Water', 'Growing setup', 'Cabinet placement'].forEach((label, index) => {
+  ['Light', 'Water', 'Growing setup', 'Cabinet placement', 'Temperature & humidity', 'Feeding', 'Seasonal care'].slice(0, care.length).forEach((label, index) => {
     const row = element('div');
     row.append(element('dt', label), element('dd', care[index]));
     details.append(row);
@@ -116,3 +119,4 @@ function render() {
 search.addEventListener('input', render);
 group.addEventListener('change', render);
 render();
+
