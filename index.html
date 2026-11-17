@@ -10,14 +10,199 @@
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,sans-serif}h1,h2,h3{font-family:Georgia,serif;line-height:1.06;margin:0}a{color:inherit}header{background:var(--green);color:#fffceb}.hero,main,footer{width:min(1120px,calc(100% - 36px));margin:auto}.hero{display:grid;grid-template-columns:1.4fr .65fr;align-items:center;gap:2rem;padding:52px 0}.hero img{width:100%;height:270px;object-fit:cover;border-radius:48% 48% 12px 12px;border:1px solid #adc5a4}.tag{text-transform:uppercase;letter-spacing:.17em;font-size:.74rem;font-weight:750}.hero .tag{color:#d5e7af}h1{font-size:clamp(2.8rem,7vw,6rem);letter-spacing:-.06em}.hero p:last-child{max-width:44ch;color:#e3ead8}.conditions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0 12px}.conditions div{padding:15px;border:1px solid var(--line);border-radius:12px;background:#e8efdf}.conditions strong{display:block;font-size:1.14rem}.note{color:var(--soft);margin-bottom:38px}h2{font-size:2.5rem}.controls{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}.controls label{display:grid;gap:4px;flex:1;min-width:160px}input,select{font:inherit;padding:10px 12px;border:1px solid #778c7c;border-radius:8px;color:var(--ink);background:#fffdf7;width:100%}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,315px),1fr));gap:16px}article{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fffdf7}.photo{width:100%;height:210px;object-fit:cover;display:block}.photo--contain{object-fit:contain;background:#e8efdf}.reference{margin:0}.reference img{border-radius:8px}.reference figcaption{font-size:.82rem;color:var(--soft);padding:5px 20px 0}.card{padding:20px}.card .tag{color:#476547;margin:0 0 8px}h3{font-size:1.65rem}.id{font-size:.9rem;color:var(--soft);margin:7px 0 16px}.card dl{margin:0}.card dl div{border-top:1px solid var(--line);padding:8px 0}.card dt{font-weight:750}.card dd{margin:2px 0 0}.result{color:var(--soft)}footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0 42px;color:var(--soft)}@media(max-width:620px){.hero{grid-template-columns:1fr;padding:35px 0;gap:12px}.hero img{height:170px;border-radius:12px}.conditions{grid-template-columns:1fr}.conditions div{padding:10px 14px}}
 </style>
 <script src="plants.js" defer></script><script src="app.js" defer></script>
+
+<style>
+.setup-section{margin:28px 0;padding:24px;background:#fffdf7;border:1px solid var(--line);border-radius:16px}
+.setup-section h2{font-size:2rem}.setup-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:20px}
+.setup-photo{width:100%;max-height:420px;object-fit:contain;border-radius:12px;background:#e8efdf}.setup-photo[hidden]{display:none}
+.setup-placeholder{padding:60px 20px;text-align:center;background:#e8efdf;border-radius:12px;color:var(--soft)}
+.setup-fields{display:grid;gap:12px}.setup-fields label{display:grid;gap:4px;font-weight:600}
+.setup-fields textarea{font:inherit;width:100%;padding:10px;border:1px solid #778c7c;border-radius:8px;resize:vertical}
+.setup-readings{display:grid;grid-template-columns:1fr 1fr;gap:12px}.setup-fields button{font:600 15px system-ui;padding:12px;border:1px solid var(--green);border-radius:9px;background:var(--green);color:#fffceb;cursor:pointer}
+.setup-status,.setup-help{font-size:.85rem;color:var(--soft);margin:8px 0}.setup-fields input[type=file]{font-size:.85rem}
+@media(max-width:620px){.setup-layout{grid-template-columns:1fr}.setup-section{padding:18px}}
+</style>
 </head>
 <body>
 <header><div class="hero"><div><p class="tag">Plant collection · RUDSTA cabinet</p><h1>My Greenhouse Cabinet</h1><p>Find each plant’s light, watering, growing setup, and best spot in or around the cabinet.</p></div><img src="9311.webp" alt="Variegated bromeliad on a wooden cabinet mount"></div></header>
 <main>
+<section class="setup-section" aria-labelledby="setup-title">
+<h2 id="setup-title">Current Setup</h2>
+<p class="setup-help">Keep a photo and notes about your cabinet, plus its current temperature and humidity. Saved on this browser.</p>
+<div class="setup-layout">
+<div><img id="setup-photo" class="setup-photo" alt="Your current greenhouse cabinet setup" hidden><div id="setup-placeholder" class="setup-placeholder">Add a photo of your current setup</div><p id="setup-saved" class="setup-help"></p></div>
+<form id="setup-form" class="setup-fields">
+<label>Setup photo<input id="setup-file" type="file" accept="image/jpeg,image/png,image/webp,image/avif"></label>
+<label>Setup notes<textarea id="setup-notes" rows="4" maxlength="10000" placeholder="Shelves, plants, lights, fans, and recent changes"></textarea></label>
+<div class="setup-readings"><label>Temperature (°F)<input id="setup-temp" type="number" step="0.1" min="-50" max="150" placeholder="75"></label><label>Humidity (%)<input id="setup-humidity" type="number" step="0.1" min="0" max="100" placeholder="68"></label></div>
+<button type="submit" id="setup-save">Save Current Setup</button>
+<p id="setup-status" class="setup-status" role="status" aria-live="polite"></p>
+</form></div></section>
+
 <section aria-label="Cabinet conditions"><div class="conditions"><div><span class="tag">Recent humidity</span><strong>About 68% RH</strong></div><div><span class="tag">Reported temperature</span><strong>75–78 °F</strong></div><div><span class="tag">Airflow</span><strong>Fan runs across the shelf</strong></div></div><p class="note">All cabinet grow lights are set to the same level. Check light and drying at leaf level, especially behind glass and around dense moss. Watering cues are starting points to adjust as the cabinet dries.</p></section>
 <section aria-labelledby="inventory"><h2 id="inventory">Plant inventory</h2>
 <div class="controls"><label>Search plants<input type="search" id="search" placeholder="Try pothos or Tillandsia"></label><label>Plant group<select id="group"><option value="">All groups</option></select></label></div>
 <p id="count" class="result" role="status"></p><div class="grid" id="cards"></div><noscript>Enable JavaScript to view the plant inventory.</noscript></section>
 </main>
 <footer>Care references · <a href="https://libguides.nybg.org/airplant">New York Botanical Garden air plant guide</a> · <a href="https://plants.ces.ncsu.edu/plants/tillandsia-xerographica/">NC State Extension xerographica guide</a> · <a href="https://hgic.clemson.edu/factsheet/bromeliads/">Clemson Extension bromeliad guide</a></footer>
+
+<style>
+.floating-action{position:fixed;bottom:max(18px,env(safe-area-inset-bottom));z-index:20;border:1px solid #b7c8ae;border-radius:999px;padding:12px 17px;background:var(--green);color:#fffceb;font:600 14px/1.2 system-ui,sans-serif;box-shadow:0 4px 16px #18352a30;cursor:pointer;min-height:46px}
+#back-top{left:16px}#cloud-toggle{right:16px}
+.floating-action:focus-visible,#cloud-panel button:focus-visible{outline:3px solid #819e5c;outline-offset:3px}
+#cloud-panel{position:fixed;right:16px;bottom:calc(max(18px,env(safe-area-inset-bottom)) + 60px);z-index:21;width:min(340px,calc(100vw - 32px));padding:20px;background:#fffdf7;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 32px #18352a30}
+#cloud-panel[hidden]{display:none}#cloud-panel h2{font-size:1.6rem}#cloud-panel p{font-size:.9rem;color:var(--soft)}#cloud-panel button{font:600 14px system-ui,sans-serif;border:1px solid var(--green);border-radius:8px;padding:10px 12px;cursor:pointer;background:var(--green);color:#fffceb}
+#cloud-panel .close-cloud{float:right;background:transparent;color:var(--ink);padding:4px 8px;border:0;font-size:20px}footer{padding-bottom:95px}
+</style>
+<button type="button" id="back-top" class="floating-action" aria-label="Back to top">↑ Back to Top</button>
+<button type="button" id="cloud-toggle" class="floating-action" aria-controls="cloud-panel" aria-expanded="false">☁ Cloud Update</button>
+<section id="cloud-panel" aria-label="Cloud update" hidden>
+<button type="button" class="close-cloud" aria-label="Close cloud update">×</button>
+<h2>Cloud Update</h2>
+<p>Load the latest plant guide, photos, and website changes published from GitHub.</p>
+<p id="cloud-status" role="status">The published plant guide is shared across your devices.</p>
+<button type="button" id="cloud-refresh">Load Latest Update</button>
+</section>
+<script>
+(() => {
+  const toggle = document.getElementById('cloud-toggle');
+  const panel = document.getElementById('cloud-panel');
+  const refresh = document.getElementById('cloud-refresh');
+  const status = document.getElementById('cloud-status');
+  function closePanel() {
+    panel.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.focus();
+  }
+  toggle.addEventListener('click', () => {
+    panel.hidden = !panel.hidden;
+    toggle.setAttribute('aria-expanded', String(!panel.hidden));
+  });
+  panel.querySelector('.close-cloud').addEventListener('click', closePanel);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !panel.hidden) closePanel();
+  });
+  document.getElementById('back-top').addEventListener('click', () => {
+    window.scrollTo({top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  });
+  refresh.addEventListener('click', async () => {
+    refresh.disabled = true;
+    status.textContent = 'Loading the latest published update…';
+    try {
+      const responses = await Promise.all(['index.html', 'app.js', 'plants.js'].map(path => fetch(path, {cache: 'reload'})));
+      if (responses.some(response => !response.ok)) throw new Error('Update unavailable');
+      await Promise.all(responses.map(response => response.text()));
+      const url = new URL(location.href);
+      url.searchParams.set('updated', Date.now().toString());
+      location.replace(url);
+    } catch {
+      status.textContent = 'The update could not be loaded. Check your connection and try again.';
+      refresh.disabled = false;
+    }
+  });
+  if (new URL(location.href).searchParams.has('updated')) {
+    status.textContent = 'Latest published update loaded on this device.';
+    panel.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+    const url = new URL(location.href);
+    url.searchParams.delete('updated');
+    history.replaceState(null, '', url);
+  }
+})();
+</script>
+
+
+<script>
+(() => {
+  const form = document.getElementById('setup-form');
+  const photo = document.getElementById('setup-photo');
+  const placeholder = document.getElementById('setup-placeholder');
+  const fileInput = document.getElementById('setup-file');
+  const notes = document.getElementById('setup-notes');
+  const temp = document.getElementById('setup-temp');
+  const humidity = document.getElementById('setup-humidity');
+  const status = document.getElementById('setup-status');
+  const saved = document.getElementById('setup-saved');
+  const save = document.getElementById('setup-save');
+  let current = {};
+  let objectUrl;
+  let database;
+  let loading = true;
+  function showPhoto(blob) {
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    objectUrl = blob ? URL.createObjectURL(blob) : null;
+    photo.hidden = !objectUrl;
+    placeholder.hidden = !!objectUrl;
+    if (objectUrl) photo.src = objectUrl;
+    else photo.removeAttribute('src');
+  }
+  const ready = new Promise((resolve, reject) => {
+    const request = indexedDB.open('greenhouse-cabinet', 1);
+    request.onupgradeneeded = () => request.result.createObjectStore('setup');
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      database = request.result;
+      const read = database.transaction('setup').objectStore('setup').get('current');
+      read.onerror = () => reject(read.error);
+      read.onsuccess = () => resolve(read.result || {});
+    };
+  });
+  ready.then(record => {
+    current = record;
+    notes.value = record.notes || '';
+    temp.value = record.temperature ?? '';
+    humidity.value = record.humidity ?? '';
+    showPhoto(record.photo);
+    if (record.savedAt) saved.textContent = 'Saved ' + new Date(record.savedAt).toLocaleString();
+    loading = false;
+  }).catch(() => {
+    loading = false;
+    status.textContent = 'Browser storage is unavailable. Your setup cannot be saved here.';
+    save.disabled = true;
+  });
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (!file) { showPhoto(current.photo); return; }
+    if (file.size > 15 * 1024 * 1024) {
+      status.textContent = 'Choose a photo smaller than 15 MB.';
+      fileInput.value = '';
+      showPhoto(current.photo);
+      return;
+    }
+    showPhoto(file);
+    status.textContent = 'Photo selected. Save Current Setup to keep it.';
+  });
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (loading || !database || !form.reportValidity()) return;
+    save.disabled = true;
+    status.textContent = 'Saving…';
+    const record = {
+      notes: notes.value,
+      temperature: temp.value === '' ? null : Number(temp.value),
+      humidity: humidity.value === '' ? null : Number(humidity.value),
+      photo: fileInput.files[0] || current.photo || null,
+      savedAt: new Date().toISOString()
+    };
+    try {
+      await new Promise((resolve, reject) => {
+        const transaction = database.transaction('setup', 'readwrite');
+        transaction.objectStore('setup').put(record, 'current');
+        transaction.oncomplete = resolve;
+        transaction.onerror = () => reject(transaction.error);
+        transaction.onabort = () => reject(transaction.error);
+      });
+      current = record;
+      saved.textContent = 'Saved ' + new Date(record.savedAt).toLocaleString();
+      fileInput.value = '';
+      status.textContent = 'Current setup saved on this browser.';
+    } catch {
+      status.textContent = 'Your setup could not be saved. Try a smaller photo or free some browser storage.';
+    } finally {
+      save.disabled = false;
+    }
+  });
+})();
+</script>
 </body></html>
+
