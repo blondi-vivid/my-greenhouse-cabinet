@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A personal plant inventory and care guide for an IKEA RUDSTA greenhouse cabinet.">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+<title>My Greenhouse Cabinet</title>
+<style>
+:root{color-scheme:light;--ink:#18352a;--soft:#4e6354;--paper:#f5f3e9;--line:#d6ded0;--green:#133f31}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,sans-serif}h1,h2,h3{font-family:Georgia,serif;line-height:1.06;margin:0}a{color:inherit}header{background:var(--green);color:#fffceb}.hero,main,footer{width:min(1120px,calc(100% - 36px));margin:auto}.hero{display:grid;grid-template-columns:1.4fr .65fr;align-items:center;gap:2rem;padding:52px 0}.hero img{width:100%;height:270px;object-fit:cover;border-radius:48% 48% 12px 12px;border:1px solid #adc5a4}.tag{text-transform:uppercase;letter-spacing:.17em;font-size:.74rem;font-weight:750}.hero .tag{color:#d5e7af}h1{font-size:clamp(2.8rem,7vw,6rem);letter-spacing:-.06em}.hero p:last-child{max-width:44ch;color:#e3ead8}.conditions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0 12px}.conditions div{padding:15px;border:1px solid var(--line);border-radius:12px;background:#e8efdf}.conditions strong{display:block;font-size:1.14rem}.note{color:var(--soft);margin-bottom:38px}h2{font-size:2.5rem}.controls{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}.controls label{display:grid;gap:4px;flex:1;min-width:160px}input,select{font:inherit;padding:10px 12px;border:1px solid #778c7c;border-radius:8px;color:var(--ink);background:#fffdf7;width:100%}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,315px),1fr));gap:16px}article{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fffdf7}.photo{width:100%;height:210px;object-fit:cover;display:block}.photo--contain{object-fit:contain;background:#e8efdf}.reference{margin:0}.reference img{border-radius:8px}.reference figcaption{font-size:.82rem;color:var(--soft);padding:5px 20px 0}.card{padding:20px}.card .tag{color:#476547;margin:0 0 8px}h3{font-size:1.65rem}.id{font-size:.9rem;color:var(--soft);margin:7px 0 16px}.card dl{margin:0}.card dl div{border-top:1px solid var(--line);padding:8px 0}.card dt{font-weight:750}.card dd{margin:2px 0 0}.result{color:var(--soft)}footer{border-top:1px solid var(--line);margin-top:36px;padding:20px 0 42px;color:var(--soft)}@media(max-width:620px){.hero{grid-template-columns:1fr;padding:35px 0;gap:12px}.hero img{height:170px;border-radius:12px}.conditions{grid-template-columns:1fr}.conditions div{padding:10px 14px}}
+</style>
+<script src="plants.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<header><div class="hero"><div><p class="tag">Plant collection · RUDSTA cabinet</p><h1>My Greenhouse Cabinet</h1><p>Find each plant’s light, watering, growing setup, and best spot in or around the cabinet.</p></div><img src="9311.webp" alt="Variegated bromeliad on a wooden cabinet mount"></div></header>
+<main>
+<section aria-label="Cabinet conditions"><div class="conditions"><div><span class="tag">Recent humidity</span><strong>About 68% RH</strong></div><div><span class="tag">Reported temperature</span><strong>75–78 °F</strong></div><div><span class="tag">Airflow</span><strong>Fan runs across the shelf</strong></div></div><p class="note">All cabinet grow lights are set to the same level. Check light and drying at leaf level, especially behind glass and around dense moss. Watering cues are starting points to adjust as the cabinet dries.</p></section>
+<section aria-labelledby="inventory"><h2 id="inventory">Plant inventory</h2>
+<div class="controls"><label>Search plants<input type="search" id="search" placeholder="Try pothos or Tillandsia"></label><label>Plant group<select id="group"><option value="">All groups</option></select></label></div>
+<p id="count" class="result" role="status"></p><div class="grid" id="cards"></div><noscript>Enable JavaScript to view the plant inventory.</noscript></section>
+</main>
+<footer>Care references · <a href="https://libguides.nybg.org/airplant">New York Botanical Garden air plant guide</a> · <a href="https://plants.ces.ncsu.edu/plants/tillandsia-xerographica/">NC State Extension xerographica guide</a> · <a href="https://hgic.clemson.edu/factsheet/bromeliads/">Clemson Extension bromeliad guide</a></footer>
+</body></html>
