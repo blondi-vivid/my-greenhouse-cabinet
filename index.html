@@ -22,9 +22,15 @@
 .setup-status,.setup-help{font-size:.85rem;color:var(--soft);margin:8px 0}.setup-fields input[type=file]{font-size:.85rem}
 @media(max-width:620px){.setup-layout{grid-template-columns:1fr}.setup-section{padding:18px}}
 </style>
-<style>.page-nav{display:flex;gap:12px;flex-wrap:wrap;padding:18px max(18px,calc((100% - 1120px)/2));background:#e8efdf;border-bottom:1px solid var(--line)}.page-nav a{padding:8px 15px;border:1px solid #aebfa5;border-radius:999px;text-decoration:none;font-weight:650}.page-nav a[aria-current=page]{background:var(--green);color:#fffceb}.hero{grid-template-columns:1fr}.plant-sources{font-size:.85rem;color:var(--soft);margin:24px 0}</style><style>.branded-header{background:var(--paper);color:var(--ink)}.branded-header .hero{display:flex;flex-direction:column;gap:10px;padding:25px 0 20px;text-align:center}.branded-header .hero .brand-logo{height:310px;width:auto;max-width:100%;object-fit:contain;border:0;border-radius:0}.branded-header .hero p{margin:0;color:var(--soft);max-width:60ch}.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}@media(max-width:620px){.branded-header .hero .brand-logo{height:245px}}</style></head>
+<style>.page-nav{display:flex;gap:12px;flex-wrap:wrap;padding:18px max(18px,calc((100% - 1120px)/2));background:#e8efdf;border-bottom:1px solid var(--line)}.page-nav a{padding:8px 15px;border:1px solid #aebfa5;border-radius:999px;text-decoration:none;font-weight:650}.page-nav a[aria-current=page]{background:var(--green);color:#fffceb}.hero{grid-template-columns:1fr}.plant-sources{font-size:.85rem;color:var(--soft);margin:24px 0}</style><style>.branded-header{background:var(--paper);color:var(--ink)}.branded-header .hero{display:flex;flex-direction:column;gap:10px;padding:25px 0 20px;text-align:center}.branded-header .hero .brand-logo{height:310px;width:auto;max-width:100%;object-fit:contain;border:0;border-radius:0}.branded-header .hero p{margin:0;color:var(--soft);max-width:60ch}.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}@media(max-width:620px){.branded-header .hero .brand-logo{height:245px}}</style><style>
+.branded-header .hero{display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:32px;text-align:left}
+.branded-header .header-copy{flex:1;min-width:0}
+.branded-header .header-copy h1{font-size:clamp(2.4rem,5vw,4.8rem);letter-spacing:-.045em;margin-bottom:16px}
+.branded-header .hero .brand-logo{flex:0 0 auto;height:280px;width:220px;max-width:35%;object-fit:contain;margin-left:auto}
+@media(max-width:620px){.branded-header .hero{gap:16px}.branded-header .header-copy h1{font-size:clamp(1.65rem,6.2vw,2.4rem);margin-bottom:10px}.branded-header .hero .brand-logo{width:110px;height:160px;max-width:32%}.branded-header .hero p{font-size:.85rem}}
+</style></head>
 <body>
-<header class="branded-header"><div class="hero"><h1 class="visually-hidden">My Greenhouse Cabinet</h1><img class="brand-logo" src="greenhouse-logo.png" alt="My Greenhouse Cabinet — glass cabinet with plants and a trailing vine"><p>My plants, their care, and the cabinet they call home.</p></div></header><nav class="page-nav" aria-label="Main navigation"><a href="index.html" aria-current="page">Current Plants</a><a href="setup.html">Current Setup</a></nav>
+<header class="branded-header"><div class="hero"><div class="header-copy"><h1>My Greenhouse Cabinet</h1><p>My plants, their care, and the cabinet they call home.</p></div><img class="brand-logo" src="greenhouse-logo.png" alt="Greenhouse cabinet with plants and a trailing vine"></div></header><nav class="page-nav" aria-label="Main navigation"><a href="index.html" aria-current="page">Current Plants</a><a href="setup.html">Current Setup</a></nav>
 <main>
 
 
@@ -56,5 +62,6 @@ document.getElementById('back-top').addEventListener('click', () => {
 });
 </script>
 </body></html>
+
 
 
